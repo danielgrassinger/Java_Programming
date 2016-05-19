@@ -1,18 +1,25 @@
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 public class Student {
+	static int IDcounter=0;
+	
 	private String name;
 	private Date birthdate;
 	private int ID;
-	private int numberOfExams;
-	private float grades;
-
-	// Constructor
-	public Student(int ID){
-		this.ID=ID;
-	}
+	private float averageGrade;
+	private int numberOfGrades;
 	
 
+	// Constructor
+	public Student(){
+		IDcounter++;
+		this.ID = IDcounter;
+	}
+	
+	// getter and setter
 	public String getName(){
 		return name;
 	}
@@ -38,19 +45,37 @@ public class Student {
 //		this.ID = ID;
 //	}
 	
-	public int getNumberOfExames(){
-		return numberOfExams;
+	public int getNumberOfExams(){
+		return numberOfGrades;
 	}
 	
-	public void setNumberOfExames(int numberOfExames){
-		this.numberOfExams = numberOfExames;
-	}
-
-	public float getGrades(){
-		return grades;
+	public void setNumberOfExams(int numberOfGrades){
+		this.numberOfGrades = numberOfGrades;
 	}
 	
-	public void setGrades(float grades){
-		this.grades = grades;
+	public float getAverageGrade(){
+		return averageGrade;
+	}
+	
+	public void setAverageGrade(float averageGrade){
+		this.averageGrade = averageGrade;
+	}
+	
+	@Override
+	public String toString(){
+		SimpleDateFormat dateformat = new SimpleDateFormat("dd.MM.yyyy");
+		
+		return String.format(
+				"Student-ID: %d\n"
+				+ "Name: %s\n"
+				+ "Geburtsdatum: %s\n"
+				+ "Prüfungsanzahl: %d \n"
+				+ "Notendurchschnitt: %f\n\n", 
+				getID(),getName(),
+				dateformat.format(getBirthdate()),
+				getNumberOfExams(), getAverageGrade());
+		
+		
+		
 	}
 }
